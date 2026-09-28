@@ -23,7 +23,7 @@ ARGUS is a **CI/CD security and vulnerability prioritization platform** that bri
 
 🚧 **Under construction.**
 
-Currently convincing security tools to stop yelling at us.
+Currently convincing security tools to stop yelling at me.
 
 ---
 
