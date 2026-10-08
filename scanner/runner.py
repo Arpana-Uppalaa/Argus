@@ -40,26 +40,16 @@ def run_scanner(name, command, output_file, ok_exit_codes):
     return True
 
 
-def main():
-    # 1. Check the user gave us a folder to scan
-    if len(sys.argv) != 2:
-        print("Usage: python -m scanner.runner <folder-to-scan>")
-        sys.exit(1)
-
-    target = Path(sys.argv[1])
-    if not target.is_dir():
-        print(f"Error: '{target}' is not a folder.")
-        sys.exit(1)
-
+def run_all(target):
+    """Run all three scanners on a folder. Returns {tool name: True/False}."""
+    target = Path(target)
     OUTPUT_DIR.mkdir(exist_ok=True)
-    print(f"ARGUS scanning: {target}\n")
 
     trivy_out = OUTPUT_DIR / "trivy.json"
     semgrep_out = OUTPUT_DIR / "semgrep.json"
     gitleaks_out = OUTPUT_DIR / "gitleaks.json"
 
-    # 2. Run each scanner
-    results = {
+    return {
         "Trivy": run_scanner(
             "Trivy",
             ["trivy", "fs", "--format", "json",
@@ -83,7 +73,20 @@ def main():
         ),
     }
 
-    # 3. Summary
+
+def main():
+    if len(sys.argv) != 2:
+        print("Usage: python -m scanner.runner <folder-to-scan>")
+        sys.exit(1)
+
+    target = Path(sys.argv[1])
+    if not target.is_dir():
+        print(f"Error: '{target}' is not a folder.")
+        sys.exit(1)
+
+    print(f"ARGUS scanning: {target}\n")
+    results = run_all(target)
+
     print("\nSummary:")
     for name, ok in results.items():
         print(f"  {'✓' if ok else '✗'} {name}")
