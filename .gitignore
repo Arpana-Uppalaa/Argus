@@ -1,0 +1,38 @@
+# Python
+__pycache__/
+*.py[cod]
+
+# Virtual environment
+venv/
+.venv/
+env/
+
+# Secrets and environment files
+.env
+.env.*
+!.env.example
+
+# Databases
+*.db
+*.sqlite
+*.sqlite3
+
+# Logs
+*.log
+logs/
+
+# Security scan output
+scan-results/
+reports/
+*.sarif
+
+# Private keys
+*.pem
+*.key
+
+# macOS
+.DS_Store
+
+# IDE
+.vscode/
+.idea/
