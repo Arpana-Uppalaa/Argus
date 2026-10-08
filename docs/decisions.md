@@ -20,3 +20,10 @@ against the severity-only baseline.
 - Repo owners (verified via GitHub login): full results
 - Anyone else, public repos only: summary counts only, plus an option to notify the owner
 - Reason: keep "scan any repo" useful to owners without handing attackers exact leak locations
+
+## 6. Free demo for interviewers
+- Dashboard can export a static HTML snapshot (Phase 6)
+- GitHub Action runs ARGUS and publishes the snapshot to GitHub Pages (Phase 7)
+- Demo uses fake test data only; fake secrets are generated at run time, never committed
+- README with screenshots + short demo video
+- Open question: code public (A) or private + separate public demo repo (B). Decide in Phase 7.
